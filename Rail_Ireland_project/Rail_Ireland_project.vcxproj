@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="database.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="menu.c" />
     <ClCompile Include="user_input.c" />
@@ -134,6 +135,7 @@
     <ClCompile Include="view.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="database.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="types.h" />
     <ClInclude Include="user_input.h" />
