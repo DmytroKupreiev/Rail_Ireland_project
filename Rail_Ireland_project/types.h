@@ -1,9 +1,8 @@
 #pragma once
 
 #define MAX_USERS 3
-#define MAX_LOGINS 3
 #define MAX_STRING 100
-#define CREDENTIALS_LEN 6
+#define PASSWORD_LEN 6
 
 #define PASSENGERS_PATH "passengers.txt"
 #define DB_PATH			"database.txt"
@@ -38,3 +37,8 @@ typedef struct Passenger {
 	TravelClass travelClass;
 	TravelFreq  travelFrequency;
 } Passenger;
+
+typedef struct User {
+	char username[MAX_STRING];
+	char password[PASSWORD_LEN];
+} User;
