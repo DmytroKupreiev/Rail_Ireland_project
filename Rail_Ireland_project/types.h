@@ -2,10 +2,10 @@
 
 #define MAX_USERS 3
 #define MAX_STRING 100
-#define PASSWORD_LEN 6
+#define PASSWORD_LEN 7
 
-#define PASSENGERS_PATH "passengers.txt"
-#define DB_PATH			"database.txt"
+#define USER_PATH	"users.txt"
+#define DB_PATH		"passengers.txt"
 
 
 typedef enum City {

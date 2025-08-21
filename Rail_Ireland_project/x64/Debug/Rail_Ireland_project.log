@@ -1,2 +1,7 @@
 ﻿  main.c
+  menu.c
+  user_input.c
+  user_login.c
+D:\Work\C_Projects\Rail_Ireland_project\Rail_Ireland_project\user_login.c(42,13): warning C4013: 'strcmp' undefined; assuming extern returning int
+  Generating Code...
   Rail_Ireland_project.vcxproj -> D:\Work\C_Projects\Rail_Ireland_project\x64\Debug\Rail_Ireland_project.exe
