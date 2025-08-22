@@ -14,9 +14,9 @@ DBNode* newNode() {
         node->data.firstName[0] = '\0';
         node->data.secondName[0] = '\0';
         node->data.email[0] = '\0';
-        node->data.cityOfDeparture = Dublin;
-        node->data.travelClass = Economy;
-        node->data.travelFrequency = LESS_THAN_TREE;
+        node->data.cityOfDeparture = -1;
+        node->data.travelClass     = -1;
+        node->data.travelFrequency = -1;
     }
     return node;
 }

@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-User*	loadUsers(const char* path);
-void	freeUsers(User* users);
-int		authenticate(User* users, const char* username, const char* password);
+User* loadUsers(const char* path);
+void  freeUsers(User* users);
+int	  authenticate(User* users, const char* username, const char* password);

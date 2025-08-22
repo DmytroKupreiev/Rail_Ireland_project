@@ -33,10 +33,13 @@
     <ClCompile Include="view.c">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="menu.c">
+    <ClCompile Include="app.c">
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="database.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.c">
       <Filter>Source Files\core</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,15 +56,21 @@
     <ClInclude Include="view.h">
       <Filter>Source Files\headers</Filter>
     </ClInclude>
-    <ClInclude Include="menu.h">
+    <ClInclude Include="app.h">
       <Filter>Source Files\headers</Filter>
     </ClInclude>
     <ClInclude Include="database.h">
       <Filter>Source Files\headers</Filter>
     </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>Source Files\headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="users.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="passengers.txt">
       <Filter>Source Files</Filter>
     </Text>
   </ItemGroup>

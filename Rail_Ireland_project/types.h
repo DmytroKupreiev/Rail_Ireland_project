@@ -22,7 +22,7 @@ typedef enum TravelClass {
 } TravelClass;
 
 typedef enum TravelFreq {
-	LESS_THAN_TREE = 1,
+	LESS_THAN_THREE = 1,
 	LESS_THAN_FIVE = 2,
 	MORE_THAN_FIVE = 3,
 } TravelFreq;

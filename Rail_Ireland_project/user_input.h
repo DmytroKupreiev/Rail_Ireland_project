@@ -1,4 +1,7 @@
 #pragma once
 
-void	clearInput(void);
-void	readPasswordIntoBuffer(char* buffer);
+#include "database.h"
+
+void clearInput(void);
+void readPasswordIntoBuffer(char* buffer);
+DBNode* inputPassenger(DBNode** head, DBNode* node);

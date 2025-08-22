@@ -1,13 +1,15 @@
 #include <stdio.h>
 
-#include "types.h"
-#include "menu.h"
+#include "database.h"
+#include "app.h"
 #include "user_login.h"
 
 void main() {
-	User* users = loadUsers(USER_PATH);
+	User* users		 = loadUsers(USER_PATH);
+	DBNode* database = loadDB(DB_PATH);
 
-	run(users);
+	run(users, database);
 
 	freeUsers(users);
+	freeDB(&database);
 }

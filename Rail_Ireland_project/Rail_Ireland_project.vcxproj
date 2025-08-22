@@ -129,20 +129,23 @@
   <ItemGroup>
     <ClCompile Include="database.c" />
     <ClCompile Include="main.c" />
-    <ClCompile Include="menu.c" />
+    <ClCompile Include="app.c" />
     <ClCompile Include="user_input.c" />
     <ClCompile Include="user_login.c" />
+    <ClCompile Include="utils.c" />
     <ClCompile Include="view.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="database.h" />
-    <ClInclude Include="menu.h" />
+    <ClInclude Include="app.h" />
     <ClInclude Include="types.h" />
     <ClInclude Include="user_input.h" />
     <ClInclude Include="user_login.h" />
+    <ClInclude Include="utils.h" />
     <ClInclude Include="view.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="passengers.txt" />
     <Text Include="users.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
