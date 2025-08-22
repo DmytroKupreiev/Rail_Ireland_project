@@ -2,6 +2,22 @@
 #include "database.h"
 #include "utils.h"
 
+void printAllNodes(DBNode* head, const char* header, FILE* stream)
+{
+    if (head == NULL) {
+        printf("\nTable is empty.\n");
+        return;
+    }
+
+    DBNode* current = head;
+
+    printTableHeader(stream, header);
+    while (current != NULL) {
+        printDBNode(stream, current);
+        current = current->next;
+    }
+}
+
 void printMenuNode(DBNode* node) {
     printf("\n== Current values ==\n");
     printf("1. ID: %d\n", node->data.PPS_ID);

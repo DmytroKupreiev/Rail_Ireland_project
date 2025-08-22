@@ -11,6 +11,7 @@ DBNode* newNode();
 DBNode* copyNode(const DBNode* source);
 DBNode* add(DBNode* head, DBNode* newNode);
 DBNode* addByKey(DBNode* head, DBNode* newNode);
+DBNode* addByYear(DBNode* head, DBNode* newNode);
 DBNode* deleteByKey(DBNode* head, const int key);
 DBNode* findByKey(DBNode* head, const int key);
 
@@ -22,3 +23,4 @@ void	saveDB(DBNode* head, const char* path);
 void    freeDB(DBNode** head);
 
 void calculateTravelClassStatistic(DBNode* head, float stats[6][3], int* totalPasWithValidInfo);
+DBNode* sortByYear(DBNode* head);

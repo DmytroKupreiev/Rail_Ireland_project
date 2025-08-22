@@ -209,7 +209,8 @@ void generateReportFile(DBNode* db)
 
 void printSortedDB(DBNode* db) 
 {
-
+    DBNode* sorted = sortByYear(db);
+    printAllNodes(sorted, "SORTED DATABASE", stdout);
 }
 
 void writeReportFile(DBNode* db, const char* filename) {

@@ -1,2 +1,8 @@
 ﻿  app.c
+  database.c
+  main.c
+  user_input.c
+D:\Work\C_Projects\Rail_Ireland_project\Rail_Ireland_project\user_input.c(18,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  view.c
+  Generating Code...
   Rail_Ireland_project.vcxproj -> D:\Work\C_Projects\Rail_Ireland_project\x64\Debug\Rail_Ireland_project.exe

@@ -68,6 +68,25 @@ DBNode* addByKey(DBNode* head, DBNode* newNode) {
     return head;
 }
 
+
+DBNode* addByYear(DBNode* head, DBNode* newNode) {
+    if (newNode == NULL) return head;
+
+    if (head == NULL || newNode->data.yearBorn < head->data.yearBorn) {
+        newNode->next = head;
+        return newNode;
+    }
+
+    DBNode* current = head;
+    while (current->next != NULL && current->next->data.yearBorn < newNode->data.yearBorn) {
+        current = current->next;
+    }
+
+    newNode->next = current->next;
+    current->next = newNode;
+    return head;
+}
+
 DBNode* deleteByKey(DBNode* head, const int key) {
     if (head == NULL) return head;
 
@@ -188,19 +207,19 @@ void saveDB(DBNode* head, const char* path) {
     fclose(file);
 }
 
-void freeDB(DBNode** head) {
-    if (head == NULL || *head == NULL) return;
-
-    DBNode* current = *head;
-    DBNode* next;
+DBNode* sortByYear(DBNode* head) {
+    DBNode* sorted = NULL;
+    DBNode* current = head;
 
     while (current != NULL) {
-        next = current->next;
-        free(current);
+        DBNode* next = current->next;
+        DBNode* newNode = copyNode(current);
+
+        sorted = addByYear(sorted, newNode);
         current = next;
     }
 
-    *head = NULL;
+    return sorted;
 }
 
 void calculateTravelClassStatistic(DBNode* head, float stats[6][3], int* totalPasWithValidInfo) {
@@ -229,4 +248,19 @@ void calculateTravelClassStatistic(DBNode* head, float stats[6][3], int* totalPa
     }
 
     *totalPasWithValidInfo = totalCount;
+}
+
+void freeDB(DBNode** head) {
+    if (head == NULL || *head == NULL) return;
+
+    DBNode* current = *head;
+    DBNode* next;
+
+    while (current != NULL) {
+        next = current->next;
+        free(current);
+        current = next;
+    }
+
+    *head = NULL;
 }
