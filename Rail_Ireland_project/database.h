@@ -20,3 +20,5 @@ int		getLength(DBNode* head);
 DBNode* loadDB(const char* filePath);
 void	saveDB(DBNode* head, const char* path);
 void    freeDB(DBNode** head);
+
+void calculateTravelClassStatistic(DBNode* head, float stats[6][3], int* totalPasWithValidInfo);

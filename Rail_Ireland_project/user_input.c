@@ -90,10 +90,26 @@ void inputID(DBNode* head, int* pps) {
 
         if (!isPPSUnique(head, *pps)) {
             printf("Error: This ID already exists in database!\n");
-            pps = -1;
+            *pps = -1;
         }
 
     } while (*pps < 1 || !isPPSUnique(head, *pps));
+}
+
+void inputPath(char* buffer, int size, const char* prompt) {
+    clearInput();
+
+    if (prompt != NULL) {
+        printf("%s", prompt);
+        fflush(stdout);
+    }
+
+    if (fgets(buffer, size, stdin) != NULL) {
+        buffer[strcspn(buffer, "\n")] = '\0';
+    }
+    else {
+        buffer[0] = '\0';
+    }
 }
 
 DBNode* inputPassenger(DBNode** head, DBNode* node)
@@ -112,7 +128,7 @@ DBNode* inputPassenger(DBNode** head, DBNode* node)
     int tempInt;
 
     do {
-        printNode(nodeToEdit);
+        printMenuNode(nodeToEdit);
         printf("0. Finish\n");
 
         printf("Enter field to edit: ");

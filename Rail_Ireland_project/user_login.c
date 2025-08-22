@@ -31,12 +31,6 @@ User* loadUsers(const char* path) {
     return users;
 }
 
-void freeUsers(User* users) {
-    if (users != NULL) {
-        free(users);
-    }
-}
-
 int authenticate(User* users, const char* username, const char* password) {
     for (int i = 0; i < MAX_USERS; i++) {
         if (strcmp(username, users[i].username) == 0 &&
@@ -46,4 +40,10 @@ int authenticate(User* users, const char* username, const char* password) {
     }
 
     return 0;
+}
+
+void freeUsers(User* users) {
+    if (users != NULL) {
+        free(users);
+    }
 }

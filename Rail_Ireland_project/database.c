@@ -202,3 +202,31 @@ void freeDB(DBNode** head) {
 
     *head = NULL;
 }
+
+void calculateTravelClassStatistic(DBNode* head, float stats[6][3], int* totalPasWithValidInfo) {
+ 
+    int countPassengersByCity[6] = {0, 0, 0, 0, 0, 0};
+    DBNode* current = head;
+
+    while (current != NULL) {
+
+        City city = current->data.cityOfDeparture;
+        TravelClass cls = current->data.travelClass;
+
+        if (city >= Dublin && city <= Munster && cls >= Economy && cls <= First) {
+            stats[city][cls]++;
+            countPassengersByCity[city]++;
+        }
+        current = current->next;
+    }
+
+    int totalCount = 0;
+    for (int cityIdx = 1; cityIdx <= Munster; cityIdx++) {
+        for (int clsInx = 1; clsInx <= First; clsInx++) {
+            stats[cityIdx][clsInx] = (float)stats[cityIdx][clsInx] / countPassengersByCity[cityIdx] * 100;
+        }
+        totalCount += countPassengersByCity[cityIdx];
+    }
+
+    *totalPasWithValidInfo = totalCount;
+}

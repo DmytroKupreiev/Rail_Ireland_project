@@ -1,4 +1,2 @@
-﻿  user_input.c
-D:\Work\C_Projects\Rail_Ireland_project\Rail_Ireland_project\user_input.c(18,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\Work\C_Projects\Rail_Ireland_project\Rail_Ireland_project\user_input.c(93,17): warning C4047: '=': 'int *' differs in levels of indirection from 'int'
+﻿  app.c
   Rail_Ireland_project.vcxproj -> D:\Work\C_Projects\Rail_Ireland_project\x64\Debug\Rail_Ireland_project.exe

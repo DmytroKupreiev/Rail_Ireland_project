@@ -16,6 +16,8 @@ void deletePassenger(DBNode** db);
 void generateStatistic(DBNode* db);
 void generateReportFile(DBNode* db);
 void printSortedDB(DBNode* db);
+void writeReportFile(DBNode* db, const char* filename);
+
 
 void run(User* users, DBNode* database) {
     int access = login(users);
@@ -28,7 +30,7 @@ void run(User* users, DBNode* database) {
     int choice = -1;
 
     do {
-        printHeader();
+        printMenuHeader();
         printf("Enter your choice (1-9): ");
         int countValue = scanf("%d", &choice);
 
@@ -83,7 +85,6 @@ int login(User* users) {
     return 0;
 }
 
-
 void addPassenger(DBNode** db) 
 {
     DBNode* newNode = inputPassenger(db, NULL);
@@ -95,12 +96,41 @@ void addPassenger(DBNode** db)
 
 void displayAll(DBNode* db) 
 {
+    if (db == NULL) {
+        printf("\nDatabase is empty.\n");
+        return;
+    }
 
+    printTableHeader(stdout, "Passengers Table");
+
+    DBNode* current = db;
+
+    while (current != NULL) {
+        printDBNode(stdout,current);
+        current = current->next;
+    }
 }
 
 void displayDetails(DBNode* db)
 {
+    if (db == NULL) {
+        printf("\nDatabase is empty.\n");
+        return;
+    }
 
+    int pps;
+    printf("\nEnter ID: ");
+    int retval = scanf("%d", &pps);
+
+    DBNode* foundNode = findByKey(db, pps);
+
+    if (foundNode == NULL) {
+        printf("\nRow not found!\n");
+        return;
+    }
+
+    printTableHeader(stdout, "Found Row");
+    printDBNode(stdout, foundNode);
 }
 
 void updatePassengerStatistic(DBNode** db) 
@@ -129,20 +159,75 @@ void updatePassengerStatistic(DBNode** db)
 
 void deletePassenger(DBNode** db) 
 {
+    if (*db == NULL) {
+        printf("\nDatabase is empty!\n");
+        return;
+    }
 
+    int pps;
+    int currentLength = getLength(*db);
+
+    clearInput();
+    do
+    {
+        printf("\n=== Delete row ===\n");
+        printf("Enter PPS(\"-1\" for exit): ");
+        int count = scanf("%d", &pps);
+        clearInput();
+
+        if (pps == -1) { return; }
+
+        *db = deleteByKey(*db, pps);
+        int newLength = getLength(*db);
+
+        if (currentLength == newLength) {
+            printf("\n(-) Row not found\n");
+        }
+        else {
+            printf("\n(+) Successfully deleted\n");
+            currentLength = newLength;
+        }
+    } while (1);
 }
 
 void generateStatistic(DBNode* db) 
 {
-
+    printTravelClassStatistic(stdout, db);
 }
 
 void generateReportFile(DBNode* db)
 {
+    char filename[256];
+    inputPath(filename, sizeof(filename), "Enter report file path (default: report.txt): ");
 
+    if (strlen(filename) == 0) {
+        strcpy(filename, "report.txt");
+    }
+
+    writeReportFile(db, filename);
 }
 
 void printSortedDB(DBNode* db) 
 {
 
+}
+
+void writeReportFile(DBNode* db, const char* filename) {
+    FILE* file = fopen(filename, "w");
+    if (file == NULL) {
+        printf("Error opening file %s for writing.\n", filename);
+        return;
+    }
+
+    printTravelClassStatistic(file, db);
+    printTableHeader(file, "ALL PASSENGERS");
+
+    DBNode* current = db;
+    while (current != NULL) {
+        printDBNode(file, current);
+        current = current->next;
+    }
+
+    fclose(file);
+    printf("Report successfully generated to %s\n", filename);
 }
