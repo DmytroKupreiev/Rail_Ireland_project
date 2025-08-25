@@ -9,6 +9,7 @@ typedef struct DBNode {
 
 DBNode* newNode();
 DBNode* copyNode(const DBNode* source);
+DBNode* copyData(const DBNode* source, DBNode* destination);
 DBNode* add(DBNode* head, DBNode* newNode);
 DBNode* addByKey(DBNode* head, DBNode* newNode);
 DBNode* addByYear(DBNode* head, DBNode* newNode);

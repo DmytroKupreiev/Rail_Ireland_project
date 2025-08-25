@@ -67,7 +67,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="users.txt">
+    <Text Include="login.txt">
       <Filter>Source Files</Filter>
     </Text>
     <Text Include="passengers.txt">

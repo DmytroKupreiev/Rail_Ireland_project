@@ -153,7 +153,13 @@ void updatePassengerStatistic(DBNode** db)
             continue;
         }
 
-        inputPassenger(db, node);
+        DBNode* updatedNode = inputPassenger(db, node);
+
+        if (updatedNode != NULL) {
+            copyData(updatedNode, node);
+            free(updatedNode);
+        }
+
     } while (1);
 }
 

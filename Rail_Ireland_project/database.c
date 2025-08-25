@@ -33,6 +33,12 @@ DBNode* copyNode(const DBNode* source) {
     return copy;
 }
 
+DBNode* copyData(const DBNode* source, DBNode* destination) {
+    if (source == NULL || destination == NULL) return NULL;
+
+    destination->data = source->data;
+}
+
 DBNode* add(DBNode* head, DBNode* newNode) {
     if (newNode == NULL) return head;
 
@@ -250,17 +256,21 @@ void calculateTravelClassStatistic(DBNode* head, float stats[6][3], int* totalPa
     *totalPasWithValidInfo = totalCount;
 }
 
-void freeDB(DBNode** head) {
-    if (head == NULL || *head == NULL) return;
+void freeDB(DBNode* head) {
+    if (head == NULL || head == NULL) return;
 
-    DBNode* current = *head;
+    DBNode* current = NULL;
     DBNode* next;
-
+    int c = 0;
     while (current != NULL) {
+        printf("%d\n", c);
+
         next = current->next;
         free(current);
         current = next;
+
+        c++;
     }
 
-    *head = NULL;
+    head = NULL;
 }

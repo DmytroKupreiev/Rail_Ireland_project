@@ -4,7 +4,7 @@
 #define MAX_STRING 100
 #define PASSWORD_LEN 7
 
-#define USER_PATH	"users.txt"
+#define USER_PATH	"login.txt"
 #define DB_PATH		"passengers.txt"
 
 
@@ -26,6 +26,15 @@ typedef enum TravelFreq {
 	LESS_THAN_FIVE = 2,
 	MORE_THAN_FIVE = 3,
 } TravelFreq;
+
+typedef enum ValidationResult {
+	VALIDATION_OK = 0,
+	ERROR_PPS = 1,
+	ERROR_YEAR = 2,
+	ERROR_EMAIL = 3,
+	ERROR_FIRSTNAME = 4,
+	ERROR_SECONDNAME = 5,
+} ValidationResult;
 
 typedef struct Passenger {
 	int			PPS_ID;

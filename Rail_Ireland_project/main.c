@@ -11,5 +11,5 @@ void main() {
 	run(users, database);
 
 	freeUsers(users);
-	freeDB(&database);
+	freeDB(database);
 }

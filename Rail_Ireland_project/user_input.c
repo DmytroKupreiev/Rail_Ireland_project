@@ -3,10 +3,12 @@
 #include <conio.h>
 #include <string.h>
 #include <limits.h>
+#include <stdlib.h>
 
 #include "user_input.h"
 #include "types.h"
 #include "view.h"
+#include "utils.h"
 
 int isValidEmail(const char* email) {
 
@@ -112,15 +114,16 @@ void inputPath(char* buffer, int size, const char* prompt) {
     }
 }
 
-DBNode* inputPassenger(DBNode** head, DBNode* node)
+DBNode* inputPassenger(DBNode** head, DBNode* source)
 {
     DBNode* nodeToEdit;
-   
-    if (node == NULL) {
+    ValidationResult validationRes;
+
+    if (source == NULL) {
         nodeToEdit = newNode();
     }
     else {
-        nodeToEdit = node;
+        nodeToEdit = copyNode(source);
     }
 
     Passenger* p = &(nodeToEdit->data);
@@ -130,6 +133,7 @@ DBNode* inputPassenger(DBNode** head, DBNode* node)
     do {
         printMenuNode(nodeToEdit);
         printf("0. Finish\n");
+        printf("-1. Exit without save\n");
 
         printf("Enter field to edit: ");
 
@@ -156,8 +160,20 @@ DBNode* inputPassenger(DBNode** head, DBNode* node)
             p->travelFrequency = (TravelFreq)tempInt;
             break;
         case 0:
+            validationRes = validatePassenger(p);
+            printf("%s\n", getValidationString(validationRes));
+
+            if (validationRes != VALIDATION_OK) {
+                choice = -100;
+            }
 
             break;
+
+        case -1:
+            free(nodeToEdit);
+            return NULL;
+            break;
+
         default:
             printf("Invalid choice!\n");
         }
@@ -165,7 +181,6 @@ DBNode* inputPassenger(DBNode** head, DBNode* node)
 
     return nodeToEdit;
 }
-
 
 void clearInput(void) {
     int c;
