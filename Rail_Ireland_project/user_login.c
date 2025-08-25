@@ -2,48 +2,91 @@
 #include <stdlib.h>
 #include "user_login.h"
 
-User* loadUsers(const char* path) {
+UserNode* newUser();
 
-    User* users = (User*)malloc(MAX_USERS * sizeof(User));
-    if (!users) {
-        printf("Memory allocation failed");
-        return NULL;
-    }
+UserNode* loadUsers(const char* path) {
+
+    UserNode* users = NULL;
 
     FILE* file = fopen(path, "r");
     if (!file) {
         printf("Failed to open login file");
-        free(users);
         return NULL;
     }
 
     for (int i = 0; i < MAX_USERS; i++) {
-        if (fscanf(file, "%99s %6s", users[i].username, users[i].password) != 2) {
-            printf("User must contain login and password\n");
 
-            free(users);
-            fclose(file);          
-            return NULL;
+        UserNode* newU = newUser();
+
+        if (fscanf(file, "%99s %6s", newU->data.username, newU->data.password) != 2) {
+            printf("User must contain login and password\n");
+            free(newU);
+            continue;
         }
+
+        users = addUser(users, newU);
     }
 
     fclose(file);
     return users;
 }
 
-int authenticate(User* users, const char* username, const char* password) {
-    for (int i = 0; i < MAX_USERS; i++) {
-        if (strcmp(username, users[i].username) == 0 &&
-            strcmp(password, users[i].password) == 0) {
+int authenticate(UserNode* users, const char* username, const char* password) {
+    UserNode* current = users;
+
+    while(current != NULL) {
+        if (strcmp(username, current->data.username) == 0 &&
+            strcmp(password, current->data.password) == 0) {
             return 1;
         }
+
+        current = current->next;
     }
 
     return 0;
 }
 
-void freeUsers(User* users) {
-    if (users != NULL) {
-        free(users);
+void freeUsers(UserNode* users) {
+    if (users == NULL) {
+        return;
     }
+
+    UserNode* next;
+    UserNode* current = users;
+
+    while (current != NULL) {
+        next = current->next;
+        free(current);
+        current = next;
+    }
+
+    users = NULL;
+}
+
+UserNode* newUser() {
+    UserNode* user = malloc(sizeof(UserNode));
+
+    if (user != NULL) {
+        user->next = NULL;
+        user->data.password[0] = '\0';
+        user->data.username[0] = '\0';
+    }
+
+    return user;
+}
+
+UserNode* addUser(UserNode* users, UserNode* newUser) {
+    if (newUser == NULL) { return users; }
+    if (users == NULL) { return newUser; }
+
+    UserNode* current = users;
+
+    while (current->next != NULL) {
+        current = current->next;
+    }
+
+    current->next = newUser;
+    newUser->next = NULL;
+
+    return users;
 }

@@ -257,19 +257,15 @@ void calculateTravelClassStatistic(DBNode* head, float stats[6][3], int* totalPa
 }
 
 void freeDB(DBNode* head) {
-    if (head == NULL || head == NULL) return;
+    if (head == NULL) return;
 
     DBNode* current = NULL;
     DBNode* next;
-    int c = 0;
-    while (current != NULL) {
-        printf("%d\n", c);
 
+    while (current != NULL) {
         next = current->next;
         free(current);
         current = next;
-
-        c++;
     }
 
     head = NULL;

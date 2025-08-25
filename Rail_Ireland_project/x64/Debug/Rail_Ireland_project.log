@@ -1,15 +1,4 @@
-﻿  app.c
-  database.c
-  main.c
-  user_input.c
+﻿  database.c
 D:\Work\C_Projects\Rail_Ireland_project\Rail_Ireland_project\database.c(259,21): warning C4028: formal parameter 1 different from declaration
-D:\Work\C_Projects\Rail_Ireland_project\Rail_Ireland_project\main.c(14,9): warning C4047: 'function': 'DBNode **' differs in levels of indirection from 'DBNode *'
-D:\Work\C_Projects\Rail_Ireland_project\Rail_Ireland_project\main.c(14,9): warning C4024: 'freeDB': different types for formal and actual parameter 1
-D:\Work\C_Projects\Rail_Ireland_project\Rail_Ireland_project\user_input.c(20,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  user_login.c
-D:\Work\C_Projects\Rail_Ireland_project\Rail_Ireland_project\user_login.c(36,13): warning C4013: 'strcmp' undefined; assuming extern returning int
-  utils.c
-  view.c
-  Generating Code...
 D:\Work\C_Projects\Rail_Ireland_project\Rail_Ireland_project\database.c(40,1): warning C4715: 'copyData': not all control paths return a value
   Rail_Ireland_project.vcxproj -> D:\Work\C_Projects\Rail_Ireland_project\x64\Debug\Rail_Ireland_project.exe
